@@ -5,6 +5,9 @@ import entities.Appointment;
 import com.mongodb.BasicDBObject;
 
 import java.util.Date;
+import java.util.List;
+
+import static presentation.shared.GlobalVariables.CURRENT_USER;
 
 public class AppointmentService {
 
@@ -14,8 +17,14 @@ public class AppointmentService {
         appointmentDAO = new AppointmentDAO();
     }
 
-    public Appointment findByDate(Date rdvDate) {
+    public List<Appointment> getAllAppointments() {
+        if (CURRENT_USER.getClass().getSimpleName().equals("Doctor")) { // for now after we will be checking if ADMIN
+            return this.appointmentDAO.findAll();
+        }
+        return null;
+    }
 
+    public Appointment findByDate(Date rdvDate) {
         return this.appointmentDAO.findByDate(rdvDate);
     }
 

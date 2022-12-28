@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class Helpers<T> {
 
@@ -28,6 +32,22 @@ public class Helpers<T> {
         } catch(IOException e) {
             return false;
         }
+    }
+
+    public static LocalDate DateToLocalDate(Date date) {
+        if (date != null) {
+            Instant instant = date.toInstant();
+            return instant.atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+        return null;
+    }
+
+    public static Date LocalDateToDate(LocalDate date) {
+        if (date != null) {
+            Instant instant = Instant.from(date.atStartOfDay(ZoneId.systemDefault()));
+            return Date.from(instant);
+        }
+        return null;
     }
 
 

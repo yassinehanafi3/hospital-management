@@ -12,8 +12,8 @@ public class Pation extends User implements Serializable {
     public Pation() {}
 
 
-    public Pation(ObjectId id, String firstName, String lastName, String cni, String userName, String userPassword, String phone, Date birthDate, String userRole) throws NoSuchAlgorithmException {
-        super(id, firstName.toUpperCase(), lastName.toUpperCase(), cni.toUpperCase(), userName.toUpperCase(),Password.GetHash(userPassword), phone, birthDate, userRole);
+    public Pation(String firstName, String lastName, String cni, String userName, String userPassword, String phone, Date birthDate, String userRole) throws NoSuchAlgorithmException {
+        super(firstName.toUpperCase(), lastName.toUpperCase(), cni.toUpperCase(), userName.toUpperCase(),Password.GetHash(userPassword), phone, birthDate, userRole);
     }
 
     public Date getCreatedAt() {

@@ -17,6 +17,11 @@ public class DoctorService {
         doctorDAO = new DoctorDAO();
     }
 
+
+    public List<Doctor> findContains(String text) {
+        return doctorDAO.findContains(text);
+    }
+
     public List<Doctor> getAllDoctors() {
         if (CURRENT_USER.getClass().getSimpleName().equals("Doctor")) { // for now after we will be checking if ADMIN
             return this.doctorDAO.findAll();
@@ -52,6 +57,10 @@ public class DoctorService {
 
     public boolean updateDoctor(BasicDBObject filter, BasicDBObject NewVal) {
         return this.doctorDAO.updateDoctor(filter, NewVal);
+    }
+
+    public boolean update(Doctor doctor) {
+        return this.doctorDAO.update(doctor);
     }
 
     public boolean updateDoctor(String filterKey, String filterValue, String updateKey, String updateValue) {

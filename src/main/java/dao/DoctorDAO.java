@@ -1,5 +1,8 @@
 package dao;
 
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import config.Connection;
 import entities.Doctor;
 import com.google.gson.Gson;
@@ -7,6 +10,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,11 +22,28 @@ public class DoctorDAO {
     private final Gson gson = new Gson();
 
 
+    public List<Doctor> findContains(String text) {
+        List<Doctor> doctorList = new ArrayList<>();
+        Bson filter = Filters.text(text); // using mongodb search text index
+        FindIterable iterable = mongoCollection.find(filter);
+        //FindIterable iterable = mongoCollection.find(new Document("$text", new Document("$search", text))); // using our own created search text index
+        try (MongoCursor<Document> cursor = iterable.iterator()) {
+            while (cursor.hasNext()) {
+                Doctor doctor = gson.fromJson(cursor.next().toJson(), Doctor.class);
+                doctorList.add(doctor);
+            }
+        }
+        return doctorList;
+    }
+
     public List<Doctor> findAll() {
         List<Doctor> doctorList = new ArrayList<>();
-        FindIterable docs = this.mongoCollection.find();
-        for(Object doc : docs) {
-            doctorList.add((Doctor) doc);
+        FindIterable iterable = this.mongoCollection.find();
+        try (MongoCursor<Document> cursor = iterable.iterator()) {
+            while (cursor.hasNext()) {
+                Doctor doctor = gson.fromJson(cursor.next().toJson(), Doctor.class);
+                doctorList.add(doctor);
+            }
         }
         return doctorList;
     }
@@ -45,12 +66,11 @@ public class DoctorDAO {
 
     private Document CreateDoctor(Doctor doctor) {
         Document doc = new Document();
-        doc.append("_id", doctor.get_id());
         doc.append("cni", doctor.getCni());
         doc.append("firstName", doctor.getFirstName());
         doc.append("lastName", doctor.getLastName());
-        doc.append("createdAt", doctor.getCreatedAt());
-        doc.append("birthDate", doctor.getBirthDate());
+        doc.append("createdAt", doctor.getCreatedAt().toLocaleString());
+        doc.append("birthDate",  doctor.getBirthDate().toLocaleString());
         doc.append("userName", doctor.getUserName());
         doc.append("userPassword", doctor.getUserPassword());
         doc.append("doctorSpeciality", doctor.getDoctorSpeciality());
@@ -71,6 +91,16 @@ public class DoctorDAO {
         BasicDBObject filter = new BasicDBObject(filterKey, filterValue);
         BasicDBObject NewVal = new BasicDBObject(updateKey, updateValue);
         return this.mongoCollection.updateOne(filter, NewVal).wasAcknowledged();
+    }
+
+    public boolean update(Doctor doctor) {
+        return this.mongoCollection.updateOne(new Document("cni", doctor.getCni()), Updates.combine(
+                Updates.set("firstName", doctor.getFirstName()),
+                Updates.set("lastName", doctor.getLastName()),
+                Updates.set("userName", doctor.getUserName()),
+                Updates.set("birthDate", doctor.getBirthDate().toLocaleString()),
+                Updates.set("doctorSpeciality", doctor.getDoctorSpeciality())
+        )).wasAcknowledged();
     }
 
     public boolean deleteByCni(String cni) {

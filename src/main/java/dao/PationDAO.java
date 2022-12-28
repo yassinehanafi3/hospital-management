@@ -1,6 +1,10 @@
 package dao;
 
+import com.google.gson.Gson;
+import com.mongodb.client.MongoCursor;
 import config.Connection;
+import entities.Appointment;
+import entities.Doctor;
 import entities.Pation;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
@@ -15,30 +19,34 @@ public class PationDAO {
 
     private final MongoCollection mongoCollection = Connection.getMongoCollection("Pations");
 
+    private Gson gson = new Gson();
+
     public List<Pation> findAll() {
         List<Pation> pationList = new ArrayList<>();
-        FindIterable docs = this.mongoCollection.find();
-
-        for(Object doc : docs) {
-            pationList.add((Pation) doc);
+        FindIterable iterable = this.mongoCollection.find();
+        try (MongoCursor<Document> cursor = iterable.iterator()) {
+            while (cursor.hasNext()) {
+                Pation pation = gson.fromJson(cursor.next().toJson(), Pation.class);
+                pationList.add(pation);
+            }
         }
         return pationList;
     }
 
     public Pation findByCni(String cni) {
-        return (Pation) this.mongoCollection.find(new Document("cni", cni)).first();
+        return gson.fromJson(gson.toJson(this.mongoCollection.find(new Document("cni", cni)).first()), Pation.class);
     }
 
     public Pation findByUsername(String userName) {
-        return (Pation) this.mongoCollection.find(new Document("userName", userName)).first();
+        return gson.fromJson(gson.toJson(this.mongoCollection.find(new Document("userName", userName)).first()), Pation.class);
     }
 
     public Pation findByBirthDate(Date birthDate) {
-        return (Pation) this.mongoCollection.find(new Document("birthDate", birthDate)).first();
+        return gson.fromJson(gson.toJson(this.mongoCollection.find(new Document("birthDate", birthDate)).first()), Pation.class);
     }
 
     public Pation findByAnyField(String field, String value) {
-        return (Pation) this.mongoCollection.find(new Document(field, value)).first();
+        return gson.fromJson(gson.toJson(this.mongoCollection.find(new Document(field, value)).first()), Pation.class);
     }
 
     private Document CreatePation(Pation pation) {

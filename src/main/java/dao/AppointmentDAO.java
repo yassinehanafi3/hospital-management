@@ -1,12 +1,18 @@
 package dao;
 
+import com.google.gson.Gson;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCursor;
 import config.Connection;
 import entities.Appointment;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
+import entities.Doctor;
 import org.bson.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static validations.Validators.isNumeric;
 
@@ -14,8 +20,23 @@ public class AppointmentDAO {
 
     private final MongoCollection mongoCollection = Connection.getMongoCollection("Appointments");
 
+    private Gson gson = new Gson();
+
+
+    public List<Appointment> findAll() {
+        List<Appointment> appointmentList = new ArrayList<>();
+        FindIterable iterable = this.mongoCollection.find();
+        try (MongoCursor<Document> cursor = iterable.iterator()) {
+            while (cursor.hasNext()) {
+                Appointment appointment = gson.fromJson(cursor.next().toJson(), Appointment.class);
+                appointmentList.add(appointment);
+            }
+        }
+        return appointmentList;
+    }
+
     public Appointment findByDate(Date appointmentDate) {
-        return (Appointment) this.mongoCollection.find(new Document("appointmentDate", appointmentDate)).first();
+        return gson.fromJson(gson.toJson(this.mongoCollection.find(new Document("appointmentDate", appointmentDate)).first()), Appointment.class);
     }
 
     private Document CreateAppointment(Appointment appointment) {
@@ -35,11 +56,10 @@ public class AppointmentDAO {
 
     public Appointment getRdvUsingField(String field, String Value) {
         BasicDBObject theQuery = new BasicDBObject();
-
         if (isNumeric(Value)) theQuery.put(field, Integer.parseInt(Value));
         else theQuery.put(field, Value);
 
-        return (Appointment) this.mongoCollection.find(theQuery).first();
+        return gson.fromJson(gson.toJson(this.mongoCollection.find(theQuery).first()), Appointment.class);
     }
 
     public boolean updateAppointment(BasicDBObject filter, BasicDBObject NewVal) {

@@ -15,8 +15,8 @@ public class Doctor extends User implements Serializable {
 
     public Doctor(){}
 
-    public Doctor(ObjectId id, String firstName, String lastName, String cni, String userName, String userPassword, String phone, Date birthDate, String Speciality, String userRole) throws NoSuchAlgorithmException {
-        super(id, firstName.toUpperCase(), lastName.toUpperCase(), cni.toUpperCase(), userName.toUpperCase(),Password.GetHash(userPassword), phone, birthDate, userRole);
+    public Doctor(String firstName, String lastName, String cni, String userName, String userPassword, String phone, Date birthDate, String Speciality, String userRole) throws NoSuchAlgorithmException {
+        super(firstName.toUpperCase(), lastName.toUpperCase(), cni.toUpperCase(), userName.toUpperCase(),Password.GetHash(userPassword), phone, birthDate, userRole);
         this.doctorSpeciality = Speciality.toUpperCase();
         this.doctorStatus = false;
     }

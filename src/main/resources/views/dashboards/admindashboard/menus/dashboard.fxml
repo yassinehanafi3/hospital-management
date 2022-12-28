@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="768.0" maxWidth="880.0" minHeight="768.0" minWidth="880.0" prefHeight="768.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.admindashboard.DashboardController">
+   <children>
+      <HBox layoutX="70.0" layoutY="93.0" maxWidth="750.0" minWidth="740.0" prefHeight="123.0" prefWidth="740.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0">
+         <children>
+            <Pane maxWidth="230.0" minWidth="230.0" prefHeight="200.0" prefWidth="230.0" style="-fx-background-color: #319997;">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <children>
+                  <GridPane prefHeight="100.0" prefWidth="230.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="numberDoctors" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="10" textAlignment="RIGHT" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Doctors" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="20.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="10.0" maxWidth="230.0" minWidth="230.0" prefHeight="200.0" prefWidth="230.0" style="-fx-background-color: #319997;">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <children>
+                  <GridPane prefHeight="100.0" prefWidth="230.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Pations" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="20.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="numberPations" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="200" textAlignment="RIGHT" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </Pane>
+            <Pane layoutX="260.0" layoutY="10.0" maxWidth="230.0" minWidth="230.0" prefHeight="200.0" prefWidth="230.0" style="-fx-background-color: #319997;">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <children>
+                  <GridPane prefHeight="100.0" prefWidth="230.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Appointments" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="20.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="numberAppointments" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="100" textAlignment="RIGHT" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <Label layoutX="45.0" layoutY="56.0" text="Statistics" textFill="GREY">
+         <font>
+            <Font name="Calibri Bold" size="25.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

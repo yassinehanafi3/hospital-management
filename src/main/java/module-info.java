@@ -1,0 +1,25 @@
+module com.gestionhopital_v3 {
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires org.mongodb.bson;
+    requires org.mongodb.driver.sync.client;
+    requires org.mongodb.driver.core;
+    requires gson;
+    requires lettuce;
+    requires java.sql;
+
+
+    exports entities;
+    opens entities to gson;
+    /*exports controllers;
+    opens controllers to javafx.fxml;
+    exports services;
+    opens services to javafx.fxml;*/
+    exports presentation.controllers.admindashboard;
+    opens presentation.controllers.admindashboard to javafx.fxml;
+    exports presentation;
+    opens presentation to javafx.fxml;
+    exports presentation.controllers;
+    opens presentation.controllers to javafx.fxml;
+
+}

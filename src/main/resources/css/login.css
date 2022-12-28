@@ -1,0 +1,36 @@
+.titleLabel {
+    -fx-font-family: Calibri;
+    -fx-font-weight: bold;
+    -fx-font-size: 35;
+    -fx-text-alignment: center;
+    -fx-text-fill: white;
+    -fx-wrap-text: true;
+}
+
+.formLabel {
+    -fx-padding: 10 5 10 5;
+    -fx-font-size: 14px;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+}
+
+.text-field {
+    -fx-padding: 10 5 10 5;
+}
+
+.button {
+    -fx-font-family: Calibri;
+    -fx-font-size: 18px;
+    -fx-text-alignment: center;
+    -fx-background-color: #319997;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: pointer;
+}
+
+.loginButton {
+    -fx-padding: 10 40 10 40;
+}
+.signAsButton {
+    -fx-padding: 5 0 5 0;
+}

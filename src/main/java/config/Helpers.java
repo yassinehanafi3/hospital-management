@@ -14,10 +14,10 @@ import java.util.Date;
 public class Helpers<T> {
 
 
-    private static Gson gson;
+    public static Gson GSON;
 
     static  {
-        gson = new Gson();
+        GSON = new Gson();
     }
 
     public static boolean isConnectedToInternet() {

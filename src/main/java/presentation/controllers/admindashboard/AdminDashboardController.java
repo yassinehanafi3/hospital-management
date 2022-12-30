@@ -1,10 +1,13 @@
-package presentation.controllers;
+package presentation.controllers.admindashboard;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TabPane;
+import presentation.controllers.admindashboard.menus.DashboardController;
+import presentation.controllers.admindashboard.menus.DoctorController;
+import presentation.controllers.admindashboard.mediator.AdminDashboardMediator;
 import presentation.services.RedisService;
 
 import java.net.URL;
@@ -17,23 +20,31 @@ public class AdminDashboardController implements Initializable {
 
     private RedisService redisService = new RedisService();
 
+    @FXML private DashboardController dashboardController;
+    @FXML private DoctorController doctorController;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        AdminDashboardMediator.getInstance().setDashboardController(dashboardController);
+        AdminDashboardMediator.getInstance().setDoctorController(doctorController);
     }
 
     @FXML protected void loadDashboard() {
+        AdminDashboardMediator.getInstance().updateDataOnDashboard();
         this.tabPane.getSelectionModel().select(0);
     }
 
     @FXML protected void loadDoctorsMenu() {
+        AdminDashboardMediator.getInstance().updateDataOnDoctor();
         this.tabPane.getSelectionModel().select(1);
     }
     @FXML protected void loadPationsMenu() {
+        //AdminDashboardMediator.getInstance().updateDataOnPation();
         this.tabPane.getSelectionModel().select(2);
     }
 
     @FXML protected void loadAppointmentsMenu() {
+        //AdminDashboardMediator.getInstance().updateDataOnAppointment();
         this.tabPane.getSelectionModel().select(3);
     }
 

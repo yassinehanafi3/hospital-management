@@ -1,4 +1,4 @@
-package presentation.controllers;
+package presentation.controllers.login;
 
 import config.Helpers;
 import controllers.AuthController;
@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import presentation.controllers.ScenesController;
 import presentation.services.RedisService;
 import services.UserService;
 

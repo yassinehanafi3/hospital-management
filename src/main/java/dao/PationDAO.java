@@ -2,9 +2,7 @@ package dao;
 
 import com.google.gson.Gson;
 import com.mongodb.client.MongoCursor;
-import config.Connection;
-import entities.Appointment;
-import entities.Doctor;
+import config.ConnectionMongoDB;
 import entities.Pation;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
@@ -17,7 +15,7 @@ import java.util.List;
 
 public class PationDAO {
 
-    private final MongoCollection mongoCollection = Connection.getMongoCollection("Pations");
+    private final MongoCollection mongoCollection = ConnectionMongoDB.getMongoCollection("Pations");
 
     private Gson gson = new Gson();
 

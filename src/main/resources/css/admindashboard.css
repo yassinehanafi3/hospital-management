@@ -9,3 +9,12 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
+
+.table-view {
+    -fx-border-color : #319997;
+}
+
+.column-header {
+    -fx-background-color: #319997;
+    -fx-border-color: #319997;
+}

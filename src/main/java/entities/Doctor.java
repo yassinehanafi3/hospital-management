@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class Doctor extends User implements Serializable {
 
-    private String doctorSpeciality;
+    private String doctorSpecialityId;
     private boolean doctorStatus;
     private Date createdAt = new Date();
 
@@ -17,17 +17,17 @@ public class Doctor extends User implements Serializable {
 
     public Doctor(String firstName, String lastName, String cni, String userName, String userPassword, String phone, Date birthDate, String Speciality, String userRole) throws NoSuchAlgorithmException {
         super(firstName.toUpperCase(), lastName.toUpperCase(), cni.toUpperCase(), userName.toUpperCase(),Password.GetHash(userPassword), phone, birthDate, userRole);
-        this.doctorSpeciality = Speciality.toUpperCase();
+        this.doctorSpecialityId = Speciality;
         this.doctorStatus = false;
     }
 
 
-    public String getDoctorSpeciality() {
-        return doctorSpeciality;
+    public String getDoctorSpecialityId() {
+        return doctorSpecialityId;
     }
 
-    public void setDoctorSpeciality(String doctorSpeciality) {
-        this.doctorSpeciality = doctorSpeciality;
+    public void setDoctorSpecialityId(String doctorSpecialityId) {
+        this.doctorSpecialityId = doctorSpecialityId;
     }
 
     public boolean isDoctorStatus() {
@@ -49,7 +49,7 @@ public class Doctor extends User implements Serializable {
     @Override
     public String toString() {
         return "Doctor{" +
-                "doctorSpeciality='" + doctorSpeciality + '\'' +
+                "doctorSpecialityId=" + doctorSpecialityId +
                 ", doctorStatus=" + doctorStatus +
                 ", createdAt=" + createdAt +
                 "} " + super.toString();

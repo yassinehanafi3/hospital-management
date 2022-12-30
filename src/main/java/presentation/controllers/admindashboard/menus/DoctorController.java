@@ -1,4 +1,4 @@
-package presentation.controllers.admindashboard;
+package presentation.controllers.admindashboard.menus;
 
 import entities.Doctor;
 import javafx.collections.FXCollections;
@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import services.DoctorService;
+import services.DoctorSpecialityService;
 
 import java.net.URL;
 import java.util.Date;
@@ -36,19 +37,22 @@ public class DoctorController implements Initializable {
     @FXML private TableColumn<Doctor, Date> dobColumn;
 
     private ObservableList<Doctor> doctors = FXCollections.observableArrayList();
+    private ObservableList<String> specialities = FXCollections.observableArrayList();
     private DoctorService doctorService = new DoctorService();
+    private DoctorSpecialityService doctorSpecialityService = new DoctorSpecialityService();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.doctorSpeciality.setItems(FXCollections.observableArrayList(
-                "Gastrologue",
-                "Psychiatre"
-        ));
+        reloadData();
+    }
+
+    public void reloadData() {
+        loadSpecialities();
         cniColumn.setCellValueFactory(new PropertyValueFactory<>("cni"));
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         prenomColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
-        specialityColumn.setCellValueFactory(new PropertyValueFactory<>("doctorSpeciality"));
+        specialityColumn.setCellValueFactory(new PropertyValueFactory<>("doctorSpecialityId"));
         dobColumn.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
 
         doctorTable.getSelectionModel().selectedIndexProperty().addListener((o, oldValue, newValue) -> {
@@ -58,6 +62,12 @@ public class DoctorController implements Initializable {
         loadDoctors();
 
         doctorTable.setItems(this.doctors);
+    }
+
+    private void loadSpecialities() {
+        this.specialities.clear();
+        this.specialities.addAll(this.doctorSpecialityService.getListDoctorSpecialitiesLabels());
+        this.doctorSpeciality.setItems(specialities);
     }
 
     private void loadDoctors() {
@@ -77,7 +87,7 @@ public class DoctorController implements Initializable {
             this.lastName.setText(doctor.getLastName());
             this.userName.setText(doctor.getUserName());
             this.birthDate.setValue(DateToLocalDate(doctor.getBirthDate()));
-            this.doctorSpeciality.getSelectionModel().select(doctor.getDoctorSpeciality());
+            this.doctorSpeciality.getSelectionModel().select(this.doctorSpecialityService.getDoctorSpecialityById(doctor.getDoctorSpecialityId()).getDoctorSpecialityLabel());
         }
     }
 
@@ -109,7 +119,19 @@ public class DoctorController implements Initializable {
             }
         }
     }
-    @FXML protected void onDeleteDoctor() {}
+    @FXML protected void onDeleteDoctor() {
+        Doctor doctor = this.doctorTable.getSelectionModel().getSelectedItem();
+        if (doctor == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Veuillez selectionner d'abord la ligne à modifier !!");
+            alert.show();
+        } else {
+            if (this.doctorService.deleteDoctorUsingCni(doctor.getCni())) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Docteur supprimée avec succée", ButtonType.OK);
+                alert.show();
+                loadDoctors();
+            }
+        }
+    }
 
     @FXML protected void onSearchDoctor() {
         if (!searchDoctor.getText().isEmpty()) {
@@ -134,7 +156,7 @@ public class DoctorController implements Initializable {
             doctor.setFirstName(doctorFirstName);
             doctor.setLastName(doctorLastName);
             doctor.setUserName(doctorUserName);
-            doctor.setDoctorSpeciality(doctorSpeciality);
+            doctor.setDoctorSpecialityId(this.doctorSpecialityService.getDoctorSpecialityByName(doctorSpeciality).getDoctorSpecialityId());
             doctor.setBirthDate(doctorDateBirth);
             return doctor;
         }

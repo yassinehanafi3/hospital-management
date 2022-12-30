@@ -21,5 +21,9 @@ module com.gestionhopital_v3 {
     opens presentation to javafx.fxml;
     exports presentation.controllers;
     opens presentation.controllers to javafx.fxml;
+    exports presentation.controllers.admindashboard.menus;
+    opens presentation.controllers.admindashboard.menus to javafx.fxml;
+    exports presentation.controllers.login;
+    opens presentation.controllers.login to javafx.fxml;
 
 }

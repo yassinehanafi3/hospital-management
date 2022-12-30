@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1224.0" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../../css/admindashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.AdminDashboardController">
+<AnchorPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1224.0" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../css/admindashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.admindashboard.AdminDashboardController">
    <children>
       <Pane layoutX="190.0" layoutY="47.0" maxHeight="768.0" maxWidth="344.0" minHeight="768.0" minWidth="344.0" prefHeight="768.0" prefWidth="344.0" style="-fx-background-color: #319997;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="880.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="152.0" fitWidth="153.0" layoutX="96.0" layoutY="37.0">
                <image>
-                  <Image url="@../../../images/userIcon.png" />
+                  <Image url="@../../images/userIcon.png" />
                </image>
             </ImageView>
             <Label layoutX="22.0" layoutY="212.0" styleClass="title" text="Admin Dashboard" />
@@ -69,7 +69,7 @@
                   <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                           <children>
-                              <fx:include source="menus/dashboard.fxml" />
+                              <fx:include fx:id="dashboard" source="menus/dashboard.fxml" />
                           </children>
                       </AnchorPane>
                   </content>
@@ -78,7 +78,7 @@
                   <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                           <children>
-                              <fx:include source="menus/doctor.fxml" />
+                              <fx:include fx:id="doctor" source="menus/doctor.fxml"/>
                           </children>
                       </AnchorPane>
                   </content>

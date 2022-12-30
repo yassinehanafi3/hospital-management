@@ -2,7 +2,7 @@ package config;
 
 import com.mongodb.client.*;
 
-public class Connection {
+public class ConnectionMongoDB {
 
 
     private static MongoClient mongoClient;

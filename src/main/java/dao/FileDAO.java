@@ -1,6 +1,6 @@
 package dao;
 
-import config.Connection;
+import config.ConnectionMongoDB;
 import entities.File;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class FileDAO {
 
-    private final MongoCollection mongoCollection = Connection.getMongoCollection("Files");
+    private final MongoCollection mongoCollection = ConnectionMongoDB.getMongoCollection("Files");
 
 
     public File findById(long fileId) {

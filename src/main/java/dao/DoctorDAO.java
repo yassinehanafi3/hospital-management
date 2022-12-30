@@ -3,7 +3,7 @@ package dao;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import config.Connection;
+import config.ConnectionMongoDB;
 import entities.Doctor;
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
@@ -18,7 +18,7 @@ import java.util.List;
 
 public class DoctorDAO {
 
-    private final MongoCollection mongoCollection = Connection.getMongoCollection("Doctors");
+    private final MongoCollection mongoCollection = ConnectionMongoDB.getMongoCollection("Doctors");
     private final Gson gson = new Gson();
 
 
@@ -73,7 +73,7 @@ public class DoctorDAO {
         doc.append("birthDate",  doctor.getBirthDate().toLocaleString());
         doc.append("userName", doctor.getUserName());
         doc.append("userPassword", doctor.getUserPassword());
-        doc.append("doctorSpeciality", doctor.getDoctorSpeciality());
+        doc.append("doctorSpecialityId", doctor.getDoctorSpecialityId());
         doc.append("doctorStatus", doctor.isDoctorStatus());
         return doc;
     }
@@ -99,7 +99,7 @@ public class DoctorDAO {
                 Updates.set("lastName", doctor.getLastName()),
                 Updates.set("userName", doctor.getUserName()),
                 Updates.set("birthDate", doctor.getBirthDate().toLocaleString()),
-                Updates.set("doctorSpeciality", doctor.getDoctorSpeciality())
+                Updates.set("doctorSpecialityId", doctor.getDoctorSpecialityId())
         )).wasAcknowledged();
     }
 

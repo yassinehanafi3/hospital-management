@@ -18,7 +18,7 @@ public class ScenesController {
     }
 
     public void loadAdminDashboard(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/dashboards/admindashboard/admindashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/admindashboard/admindashboard.fxml"));
         scene = new MyScene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
@@ -34,7 +34,7 @@ public class ScenesController {
     public void loadDoctorDashboard(Stage stage) throws IOException {
         //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/dashboards/doctordashboard/doctordashboard.fxml"));
         //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/dashboards/admindashboard/admindashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/admindashboard/admindashboard.fxml"));
         scene = new MyScene(fxmlLoader.load(), 1224, 768);
         stage.setScene(scene);
         stage.show();

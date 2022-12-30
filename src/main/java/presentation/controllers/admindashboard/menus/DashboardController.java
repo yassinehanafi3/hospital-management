@@ -1,4 +1,4 @@
-package presentation.controllers.admindashboard;
+package presentation.controllers.admindashboard.menus;
 
 import entities.Appointment;
 import entities.Doctor;
@@ -16,6 +16,7 @@ import services.DoctorService;
 import services.PationService;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -33,15 +34,17 @@ public class DashboardController implements Initializable {
     @FXML private ListView<String> newlyAddedPations;
 
 
-    private List<Doctor> doctorList = new DoctorService().getAllDoctors();
-    private List<Pation> pationList = new PationService().getAllPations();
-    private List<Appointment> appointmentsList = new AppointmentService().getAllAppointments();
+    private DoctorService doctorService = new DoctorService();
+    private PationService pationService = new PationService();
+    private AppointmentService appointmentService = new AppointmentService();
+    private List<Doctor> doctorList = new ArrayList<>();
+    private List<Pation> pationList = new ArrayList<>();
+    private List<Appointment> appointmentsList = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.setStatistics();
-        this.setPieChart();
-        this.setListViews();
+        this.reloadData();
+
     }
 
     private void setStatistics() {
@@ -69,6 +72,16 @@ public class DashboardController implements Initializable {
                 new PieChart.Data("Pations", pationList.size())
         );
         pieChart.setData(pieData);
+    }
+
+
+    public void reloadData() {
+        this.doctorList = doctorService.getAllDoctors();
+        this.pationList = pationService.getAllPations();
+        this.appointmentsList = appointmentService.getAllAppointments();
+        this.setStatistics();
+        this.setPieChart();
+        this.setListViews();
     }
 
 }

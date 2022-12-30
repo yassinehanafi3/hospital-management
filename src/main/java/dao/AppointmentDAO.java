@@ -3,11 +3,10 @@ package dao;
 import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
-import config.Connection;
+import config.ConnectionMongoDB;
 import entities.Appointment;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
-import entities.Doctor;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import static validations.Validators.isNumeric;
 
 public class AppointmentDAO {
 
-    private final MongoCollection mongoCollection = Connection.getMongoCollection("Appointments");
+    private final MongoCollection mongoCollection = ConnectionMongoDB.getMongoCollection("Appointments");
 
     private Gson gson = new Gson();
 

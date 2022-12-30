@@ -4,13 +4,14 @@ import org.bson.types.ObjectId;
 
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
 import java.util.Date;
 
 public class Doctor extends User implements Serializable {
 
     private String doctorSpecialityId;
     private boolean doctorStatus;
-    private Date createdAt = new Date();
+    private Date createdAt = new Date(DateFormat.FULL);
 
 
     public Doctor(){}

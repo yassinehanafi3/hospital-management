@@ -1,6 +1,7 @@
 package dao;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mongodb.client.MongoCursor;
 import config.ConnectionMongoDB;
 import entities.Pation;
@@ -9,6 +10,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,14 +19,14 @@ public class PationDAO {
 
     private final MongoCollection mongoCollection = ConnectionMongoDB.getMongoCollection("Pations");
 
-    private Gson gson = new Gson();
+    private final Gson gson = new GsonBuilder().setDateFormat(DateFormat.FULL).create();
 
     public List<Pation> findAll() {
         List<Pation> pationList = new ArrayList<>();
         FindIterable iterable = this.mongoCollection.find();
         try (MongoCursor<Document> cursor = iterable.iterator()) {
             while (cursor.hasNext()) {
-                Pation pation = gson.fromJson(cursor.next().toJson(), Pation.class);
+                Pation pation = gson.fromJson(gson.toJson(cursor.next()), Pation.class);
                 pationList.add(pation);
             }
         }

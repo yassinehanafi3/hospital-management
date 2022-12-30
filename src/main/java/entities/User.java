@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.Date;
 
 public class User implements Serializable {
@@ -16,7 +17,7 @@ public class User implements Serializable {
     private String userName;
     private String userPassword;
     private String phone;
-    private Date birthDate;
+    private Date birthDate = new Date(DateFormat.MEDIUM);
     private String userRole;
 
     public User() {}

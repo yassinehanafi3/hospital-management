@@ -11,6 +11,7 @@ import services.DoctorService;
 import services.DoctorSpecialityService;
 
 import java.net.URL;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -71,6 +72,9 @@ public class DoctorController implements Initializable {
     }
 
     private void loadDoctors() {
+        for (Doctor doctor : this.doctorService.getAllDoctors()) {
+            System.out.println(doctor);
+        }
         this.doctors.clear();
         this.doctors.addAll(this.doctorService.getAllDoctors());
     }

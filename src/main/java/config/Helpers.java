@@ -6,10 +6,17 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.Date;
+import java.util.Locale;
 
 public class Helpers<T> {
 
@@ -48,6 +55,17 @@ public class Helpers<T> {
             return Date.from(instant);
         }
         return null;
+    }
+
+    public static Date toMongoDbDate(Date date) {
+        try {
+            DateFormat format = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss", Locale.ENGLISH);
+            date = format.parse(date.toString());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        return date;
+
     }
 
 

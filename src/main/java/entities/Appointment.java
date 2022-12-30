@@ -6,20 +6,20 @@ import java.util.Date;
 public class Appointment implements Serializable {
 
     private long appointmentId;
-    private Doctor appointmentDoctor;
-    private Pation appointmentPation;
+    private String appointmentDoctorCni;
+    private String appointmentPationCni;
 
-    private File file;
+    private String appointmentNote;
     private Date appointmentDate;
 
     public Appointment() {}
 
-    public Appointment(long appointmentId, Doctor appointmentDoctor, Pation appointmentPation, Date appointmentDate) {
+    public Appointment(long appointmentId, String appointmentDoctor, String appointmentPation, Date appointmentDate, String appointmentNote) {
         this.appointmentId = appointmentId;
-        this.appointmentDoctor = appointmentDoctor;
-        this.appointmentPation = appointmentPation;
+        this.appointmentDoctorCni = appointmentDoctor;
+        this.appointmentPationCni = appointmentPation;
         this.appointmentDate = appointmentDate;
-        this.file = new File();
+        this.appointmentNote = appointmentNote;
     }
 
     public long getAppointmentId() {
@@ -30,20 +30,20 @@ public class Appointment implements Serializable {
         this.appointmentId = appointmentId;
     }
 
-    public Doctor getAppointmentDoctor() {
-        return appointmentDoctor;
+    public String getAppointmentDoctorCni() {
+        return appointmentDoctorCni;
     }
 
-    public void setAppointmentDoctor(Doctor appointmentDoctor) {
-        this.appointmentDoctor = appointmentDoctor;
+    public void setAppointmentDoctorCni(String appointmentDoctorCni) {
+        this.appointmentDoctorCni = appointmentDoctorCni;
     }
 
-    public Pation getAppointmentPation() {
-        return appointmentPation;
+    public String getAppointmentPationCni() {
+        return appointmentPationCni;
     }
 
-    public void setAppointmentPation(Pation appointmentPation) {
-        this.appointmentPation = appointmentPation;
+    public void setAppointmentPationCni(String appointmentPationCni) {
+        this.appointmentPationCni = appointmentPationCni;
     }
 
     public Date getAppointmentDate() {
@@ -54,11 +54,22 @@ public class Appointment implements Serializable {
         this.appointmentDate = appointmentDate;
     }
 
-    public File getFile() {
-        return file;
+    public String getAppointmentNote() {
+        return appointmentNote;
     }
 
-    public void setFile(File file) {
-        this.file = file;
+    public void setAppointmentNote(String appointmentNote) {
+        this.appointmentNote = appointmentNote;
+    }
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "appointmentId=" + appointmentId +
+                ", appointmentDoctorCni='" + appointmentDoctorCni + '\'' +
+                ", appointmentPationCni='" + appointmentPationCni + '\'' +
+                ", appointmentNote='" + appointmentNote + '\'' +
+                ", appointmentDate=" + appointmentDate +
+                '}';
     }
 }

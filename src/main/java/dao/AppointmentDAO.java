@@ -1,25 +1,47 @@
 package dao;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
 import config.ConnectionMongoDB;
 import entities.Appointment;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
+import entities.Doctor;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.mongodb.client.model.Filters.and;
 import static validations.Validators.isNumeric;
 
 public class AppointmentDAO {
 
     private final MongoCollection mongoCollection = ConnectionMongoDB.getMongoCollection("Appointments");
 
-    private Gson gson = new Gson();
+    private final Gson gson = new GsonBuilder().setDateFormat(DateFormat.FULL).create();
+
+
+    public List<Appointment> findAllByDoctorAndAboveCurrentDate(Doctor doctor) {
+        Bson andComparison = and(new Document("appointmentDoctorCni", doctor.getCni()),new Document("appointmentDate", new Document("$gt", new Date())));
+        List<Appointment> appointmentList = new ArrayList<>();
+        FindIterable iterable = this.mongoCollection.find(andComparison);
+        try (MongoCursor<Document> cursor = iterable.iterator()) {
+            while (cursor.hasNext()) {
+                Appointment appointment = gson.fromJson(gson.toJson(cursor.next()), Appointment.class);
+                System.out.println(appointment);
+                appointmentList.add(appointment);
+            }
+        }
+        return appointmentList;
+    }
 
 
     public List<Appointment> findAll() {
@@ -27,7 +49,8 @@ public class AppointmentDAO {
         FindIterable iterable = this.mongoCollection.find();
         try (MongoCursor<Document> cursor = iterable.iterator()) {
             while (cursor.hasNext()) {
-                Appointment appointment = gson.fromJson(cursor.next().toJson(), Appointment.class);
+                Appointment appointment = gson.fromJson(gson.toJson(cursor.next()), Appointment.class);
+                System.out.println(appointment);
                 appointmentList.add(appointment);
             }
         }
@@ -41,8 +64,9 @@ public class AppointmentDAO {
     private Document CreateAppointment(Appointment appointment) {
         Document doc = new Document();
         doc.append("appointmentId", appointment.getAppointmentId());
-        doc.append("appointmentDoctorCni", appointment.getAppointmentDoctor().getCni());
-        doc.append("appointmentPationCni", appointment.getAppointmentPation().getCni());
+        doc.append("appointmentDoctorCni", appointment.getAppointmentDoctorCni());
+        doc.append("appointmentPationCni", appointment.getAppointmentPationCni());
+        doc.append("appointmentNote", appointment.getAppointmentNote());
         doc.append("appointmentDate", appointment.getAppointmentDate());
         return doc;
     }
@@ -78,7 +102,6 @@ public class AppointmentDAO {
     public boolean deleteAppointmentByDate(Date date) {
         return this.mongoCollection.deleteOne(new Document("appointmentDate", date)).wasAcknowledged();
     }
-
 
 
     /*public boolean validationRDV(Rdv rdv) throws ParseException {

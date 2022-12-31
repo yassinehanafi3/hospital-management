@@ -14,7 +14,7 @@ public class GlobalVariables {
     static {
         FRAME_WIDTH = 1024;
         FRAME_HEIGHT = 768;
-        CURRENT_USER = new RedisService().getCurrentUser();
+        CURRENT_USER = new User();
     }
 
     public static void setCurrentUser(User currentUser) {

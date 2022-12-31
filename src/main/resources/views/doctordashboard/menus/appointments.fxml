@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="768.0" maxWidth="880.0" minHeight="768.0" minWidth="880.0" prefHeight="768.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="700.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="600.0">
+               <children>
+                  <TextField fx:id="search" prefHeight="40.0" prefWidth="200.0" style="-fx-border-color: #319997;">
+                     <HBox.margin>
+                        <Insets left="20.0" top="40.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="75.0" style="-fx-background-color: #319997;" text="Search" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" top="40.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: #319997;" text="Delete the selected appointment" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="180.0" right="20.0" top="40.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <TableView prefHeight="559.0" prefWidth="740.0" style="-fx-border-color: #319997;">
+              <columns>
+                <TableColumn fx:id="fName" prefWidth="100.0" text="First Name" />
+                <TableColumn fx:id="lName" prefWidth="100.0" text="Last Name" />
+                  <TableColumn fx:id="phone" prefWidth="169.0" text="Phone Number" />
+                  <TableColumn fx:id="email" prefWidth="169.0" text="Email" />
+                  <TableColumn fx:id="date" prefWidth="100.0" text="Date" />
+                  <TableColumn fx:id="hour" prefWidth="101.0" text="Hour" />
+              </columns>
+            </TableView>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #319997;" text="    Show the selected appointment" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="460.0" top="20.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="14.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/eyeIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

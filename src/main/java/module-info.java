@@ -17,12 +17,16 @@ module com.gestionhopital_v3 {
     opens services to javafx.fxml;*/
     exports presentation.controllers.admindashboard;
     opens presentation.controllers.admindashboard to javafx.fxml;
+    exports presentation.controllers.doctordashboard;
+    opens presentation.controllers.doctordashboard to javafx.fxml;
     exports presentation;
     opens presentation to javafx.fxml;
     exports presentation.controllers;
     opens presentation.controllers to javafx.fxml;
     exports presentation.controllers.admindashboard.menus;
     opens presentation.controllers.admindashboard.menus to javafx.fxml;
+    exports presentation.controllers.doctordashboard.menus;
+    opens presentation.controllers.doctordashboard.menus to javafx.fxml;
     exports presentation.controllers.login;
     opens presentation.controllers.login to javafx.fxml;
 

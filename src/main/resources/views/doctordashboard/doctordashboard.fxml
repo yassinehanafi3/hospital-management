@@ -1,14 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="views.dashboards.Doctordashboard"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1224.0" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../css/admindashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.doctordashboard.DoctorDashboardController">
+    <children>
+        <Pane layoutX="190.0" layoutY="47.0" maxHeight="768.0" maxWidth="344.0" minHeight="768.0" minWidth="344.0" prefHeight="768.0" prefWidth="344.0" style="-fx-background-color: #319997;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="880.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fitHeight="152.0" fitWidth="153.0" layoutX="96.0" layoutY="37.0">
+                    <image>
+                        <Image url="@../../images/greyhosp.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="22.0" layoutY="212.0" styleClass="title" text="Doctor Dashboard" />
+                <GridPane layoutX="72.0" layoutY="316.0" prefHeight="275.0" prefWidth="200.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="0.0" prefWidth="200.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="0.0" prefWidth="0.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="dashbordMenuButton" mnemonicParsing="false" onAction="#loadDashboard" prefHeight="73.0" prefWidth="200.0" styleClass="menuButton" text="Dashboard">
+                            <GridPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </GridPane.margin>
+                        </Button>
+                        <Button fx:id="appointmentsMenuButton" mnemonicParsing="false" onAction="#loadAppointmentsMenu" prefHeight="56.0" prefWidth="200.0" styleClass="menuButton" text="Appointments" textAlignment="CENTER" GridPane.rowIndex="1">
+                            <GridPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </GridPane.margin>
+                        </Button>
+                        <Button fx:id="pationsMenuButton" mnemonicParsing="false" onAction="#loadPationsMenu" prefHeight="58.0" prefWidth="204.0" styleClass="menuButton" text="Pations" GridPane.rowIndex="2">
+                            <GridPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </GridPane.margin>
+                        </Button>
+                    </children>
+                </GridPane>
+                <Button fx:id="disconnectButton" layoutX="72.0" layoutY="678.0" mnemonicParsing="false"  prefHeight="58.0" prefWidth="200.0" styleClass="menuButton" text="Déconnecter">
+                </Button>
+            </children>
+        </Pane>
+        <Pane layoutX="453.0" layoutY="74.0" maxHeight="768.0" maxWidth="880.0" minHeight="768.0" minWidth="880.0" prefHeight="768.0" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="344.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <TabPane fx:id="tabPane" layoutY="-29.0" prefHeight="798.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Dashboard">
+                            <content>
+                                <fx:include fx:id="dashboard" source="menus/dashboard.fxml" />
+                            </content>
+                        </Tab>
+                        <Tab text="appointments">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <fx:include fx:id="appointments" source="menus/appointments.fxml"/>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Pations">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <fx:include fx:id="pations" source="menus/pation.fxml"/>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="pation">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <fx:include fx:id="pation" source="menus/pation.fxml"/>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>

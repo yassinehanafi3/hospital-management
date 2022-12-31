@@ -3,6 +3,7 @@ package services;
 import dao.AppointmentDAO;
 import entities.Appointment;
 import com.mongodb.BasicDBObject;
+import entities.Doctor;
 
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,10 @@ public class AppointmentService {
             return this.appointmentDAO.findAll();
         }
         return null;
+    }
+
+    public List<Appointment> getAllAppointmentsByDoctor(Doctor doctor) {
+        return this.appointmentDAO.findAllByDoctor(doctor);
     }
 
     public Appointment findByDate(Date rdvDate) {

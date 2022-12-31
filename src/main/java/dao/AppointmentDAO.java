@@ -44,6 +44,35 @@ public class AppointmentDAO {
     }
 
 
+    public List<Appointment> findAllByDoctorAndDate(Doctor doctor, Date date) {
+        Bson andComparison = and(new Document("appointmentDoctorCni", doctor.getCni()),new Document("appointmentDate", new Document("$eq", date)));
+        List<Appointment> appointmentList = new ArrayList<>();
+        FindIterable iterable = this.mongoCollection.find(andComparison);
+        try (MongoCursor<Document> cursor = iterable.iterator()) {
+            while (cursor.hasNext()) {
+                Appointment appointment = gson.fromJson(gson.toJson(cursor.next()), Appointment.class);
+                System.out.println(appointment);
+                appointmentList.add(appointment);
+            }
+        }
+        return appointmentList;
+    }
+
+
+    public List<Appointment> findAllByDoctor(Doctor doctor) {
+        List<Appointment> appointmentList = new ArrayList<>();
+        FindIterable iterable = this.mongoCollection.find(new Document("appointmentDoctorCni", doctor.getCni()));
+        try (MongoCursor<Document> cursor = iterable.iterator()) {
+            while (cursor.hasNext()) {
+                Appointment appointment = gson.fromJson(gson.toJson(cursor.next()), Appointment.class);
+                System.out.println(appointment);
+                appointmentList.add(appointment);
+            }
+        }
+        return appointmentList;
+    }
+
+
     public List<Appointment> findAll() {
         List<Appointment> appointmentList = new ArrayList<>();
         FindIterable iterable = this.mongoCollection.find();

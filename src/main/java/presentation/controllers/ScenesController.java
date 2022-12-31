@@ -25,7 +25,7 @@ public class ScenesController {
     }
 
     public void loadPationDashboard(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/dashboards/pationdashboard/pationdashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/pationdashboard/pationdashboard.fxml"));
         scene = new MyScene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();

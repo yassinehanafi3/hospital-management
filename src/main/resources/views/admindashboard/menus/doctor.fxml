@@ -116,6 +116,7 @@
                   <Insets left="10.0" />
                </padding>
                <children>
+                  <Button mnemonicParsing="false" onAction="#onAddDoctor" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #319999; -fx-text-fill: white;" text="Ajouter" GridPane.rowIndex="2" />
                   <Label text="Date de naissance :">
                      <GridPane.margin>
                         <Insets left="5.0" />
@@ -124,7 +125,6 @@
                         <Insets bottom="5.0" top="5.0" />
                      </padding>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#onAddDoctor" prefHeight="35.0" prefWidth="110.0" text="Ajouter" GridPane.rowIndex="2" />
                   <DatePicker fx:id="birthDate" prefHeight="35.0" prefWidth="280.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -141,6 +141,16 @@
                         <Insets bottom="5.0" top="5.0" />
                      </padding>
                   </ComboBox>
+                  <Button mnemonicParsing="false" onAction="#onDeleteDoctor" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #319999; -fx-text-fill: white;" text="Supprimer" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="130.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onModifyDoctor" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #319999; -fx-text-fill: white;" text="Modifier" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Button>
                   <Label text="Spécialité :" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" />
@@ -149,16 +159,6 @@
                         <Insets bottom="5.0" top="5.0" />
                      </padding>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#onDeleteDoctor" prefHeight="35.0" prefWidth="110.0" text="Supprimer" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="130.0" />
-                     </GridPane.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onModifyDoctor" prefHeight="35.0" prefWidth="110.0" text="Modifier" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                  </Button>
                </children>
             </GridPane>
          </children>
@@ -173,11 +173,14 @@
       </Label>
       <Pane layoutX="540.0" layoutY="260.0" prefHeight="35.0" prefWidth="294.0">
          <children>
-            <TextField fx:id="searchDoctor" layoutX="6.0" layoutY="5.0" prefHeight="25.0" prefWidth="208.0" />
-            <Button layoutX="218.0" layoutY="5.0" mnemonicParsing="false" onAction="#onSearchDoctor" text="Rechercher" />
+            <TextField fx:id="searchDoctor" layoutX="-17.0" layoutY="1.0" prefHeight="35.0" prefWidth="215.0">
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding></TextField>
+            <Button layoutX="206.0" mnemonicParsing="false" onAction="#onSearchDoctor" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #319999; -fx-text-fill: white;" text="Rechercher" />
          </children>
       </Pane>
-      <TableView fx:id="doctorTable" layoutX="46.0" layoutY="297.0" prefHeight="440.0" prefWidth="788.0">
+      <TableView fx:id="doctorTable" layoutX="46.0" layoutY="304.0" prefHeight="440.0" prefWidth="788.0">
         <columns>
             <TableColumn fx:id="cniColumn" prefWidth="75.0" text="#Cni" />
             <TableColumn fx:id="nomColumn" prefWidth="75.0" text="Nom" />

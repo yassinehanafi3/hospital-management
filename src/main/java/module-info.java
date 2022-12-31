@@ -11,10 +11,6 @@ module com.gestionhopital_v3 {
 
     exports entities;
     opens entities to gson;
-    /*exports controllers;
-    opens controllers to javafx.fxml;
-    exports services;
-    opens services to javafx.fxml;*/
     exports presentation.controllers.admindashboard;
     opens presentation.controllers.admindashboard to javafx.fxml;
     exports presentation;

@@ -14,7 +14,19 @@
     -fx-border-color : #319997;
 }
 
-.column-header {
+.table-view .column-header {
+    -fx-background-color: #319997;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header-background {
+    -fx-padding: 10;
     -fx-background-color: #319997;
     -fx-border-color: #319997;
+
+}
+
+.table-view .table-cell{
+    -fx-padding: 10;
+    -fx-text-alignment: center;
 }

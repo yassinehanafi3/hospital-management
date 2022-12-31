@@ -50,7 +50,7 @@ public class DashboardController implements Initializable {
     private void setStatistics() {
         this.numberDoctors.setText(String.valueOf(doctorList.size()));
         this.numberPations.setText(String.valueOf(pationList.size()));
-        this.numberAppointments.setText("1250");
+        this.numberAppointments.setText(String.valueOf(appointmentsList.size()));
     }
 
     private void setListViews() {

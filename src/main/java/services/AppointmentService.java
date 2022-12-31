@@ -19,7 +19,7 @@ public class AppointmentService {
     }
 
     public List<Appointment> getAllAppointments() {
-        if (CURRENT_USER.getClass().getSimpleName().equals("Doctor")) { // for now after we will be checking if ADMIN
+        if (CURRENT_USER.getClass().getSimpleName().equals("Admin")) {
             return this.appointmentDAO.findAll();
         }
         return null;

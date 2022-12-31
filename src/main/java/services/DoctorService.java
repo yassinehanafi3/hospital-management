@@ -23,7 +23,7 @@ public class DoctorService {
     }
 
     public List<Doctor> getAllDoctors() {
-        if (CURRENT_USER.getClass().getSimpleName().equals("Doctor")) { // for now after we will be checking if ADMIN
+        if (CURRENT_USER.getClass().getSimpleName().equals("Admin")) {
             return this.doctorDAO.findAll();
         }
         return null;

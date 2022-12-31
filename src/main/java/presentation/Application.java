@@ -15,8 +15,8 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws IOException {
         stage = new MyStage();
         myStage = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/doctordashboard/doctordashboard.fxml"));
-        MyScene scene = new MyScene(fxmlLoader.load(),1224,768);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/login/login.fxml"));
+        MyScene scene = new MyScene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
     }

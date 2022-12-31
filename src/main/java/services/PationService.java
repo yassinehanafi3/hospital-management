@@ -18,7 +18,7 @@ public class PationService {
     }
 
     public List<Pation> getAllPations() {
-        if (CURRENT_USER.getClass().getSimpleName().equals("Doctor")) { // for now after we will be checking if ADMIN
+        if (CURRENT_USER.getClass().getSimpleName().equals("Admin")) { // for now after we will be checking if ADMIN
             return this.pationDao.findAll();
         }
         return null;

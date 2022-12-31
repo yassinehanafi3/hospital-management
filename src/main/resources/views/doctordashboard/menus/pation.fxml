@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="768.0" maxWidth="880.0" minHeight="768.0" minWidth="880.0" prefHeight="768.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="768.0" maxWidth="880.0" minHeight="768.0" minWidth="880.0" prefHeight="768.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.doctordashboard.menus.PationController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -31,9 +31,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints />
               </rowConstraints>
                <children>
-                  <Label text="First name : ">
+                  <Label text="Prénom : ">
                      <GridPane.margin>
                         <Insets left="30.0" />
                      </GridPane.margin>
@@ -41,7 +42,7 @@
                         <Font name="System Bold Italic" size="13.0" />
                      </font>
                   </Label>
-                  <Label text="Last name :" GridPane.rowIndex="1">
+                  <Label text="Nom :" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="30.0" />
                      </GridPane.margin>
@@ -49,7 +50,7 @@
                         <Font name="System Bold Italic" size="13.0" />
                      </font>
                   </Label>
-                  <Label text="Phone :" GridPane.rowIndex="2">
+                  <Label text="Téléphone :" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="30.0" />
                      </GridPane.margin>
@@ -65,22 +66,39 @@
                         <Font name="System Bold Italic" size="13.0" />
                      </font>
                   </Label>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1">
+                  <Label text="Cni :" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
                      <font>
                         <Font name="System Bold Italic" size="13.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     </font>
+                  </Label>
+                  <Label fx:id="firstName" text="First name : " GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold Italic" size="13.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     </font>
+                  </Label>
+                  <Label fx:id="lastName" text="First name : " GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold Italic" size="13.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     </font>
+                  </Label>
+                  <Label fx:id="phone" text="First name : " GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold Italic" size="13.0" />
-                     </font></Text>
+                     </font>
+                  </Label>
+                  <Label fx:id="email" text="First name : " GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cni" text="First name : " GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets top="30.0" />
@@ -91,7 +109,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
                <children>
-                  <Label text="Date :">
+                  <Label text="Jour :">
                      <HBox.margin>
                         <Insets left="20.0" right="10.0" top="10.0" />
                      </HBox.margin>
@@ -99,12 +117,12 @@
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
-                  <DatePicker style="-fx-border-color: #319997;">
+                  <DatePicker fx:id="day" style="-fx-border-color: #319997;">
                      <HBox.margin>
                         <Insets top="6.0" />
                      </HBox.margin>
                   </DatePicker>
-                  <Label text="Hour :">
+                  <Label text="Heur :">
                      <HBox.margin>
                         <Insets left="50.0" right="10.0" top="10.0" />
                      </HBox.margin>
@@ -112,7 +130,7 @@
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
-                  <TextField style="-fx-border-color: #319997;">
+                  <TextField fx:id="hour" style="-fx-border-color: #319997;">
                      <HBox.margin>
                         <Insets top="6.0" />
                      </HBox.margin>
@@ -128,11 +146,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <TextField fx:id="hour1" style="-fx-border-color: #319997;" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="18.0" prefWidth="600.0" style="-fx-border-color: #319997;">
                <children>
-                  <Text fill="#319997" strokeWidth="0.0" text="List of sessions" textAlignment="CENTER">
+                  <Text fill="#319997" strokeWidth="0.0" text="Liste des séances" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </HBox.margin>
@@ -145,13 +164,13 @@
                   <Insets left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </HBox>
-            <ListView prefHeight="200.0" prefWidth="851.0" style="-fx-border-radius: 12; -fx-background-color: #319997;">
+            <ListView fx:id="sessions" prefHeight="200.0" prefWidth="851.0" style="-fx-border-radius: 12; -fx-background-color: #319997;">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
                </VBox.margin></ListView>
             <HBox alignment="CENTER" prefHeight="18.0" prefWidth="600.0" style="-fx-border-color: #319997;">
                <children>
-                  <Text fill="#319997" strokeWidth="0.0" text="List of appointments">
+                  <Text fill="#319997" strokeWidth="0.0" text="Liste des Rendu-vous">
                      <HBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </HBox.margin>
@@ -164,7 +183,7 @@
                   <Insets left="20.0" right="20.0" top="10.0" />
                </VBox.margin>
             </HBox>
-            <ListView prefHeight="200.0" prefWidth="840.0" style="-fx-background-color: #319997;">
+            <ListView fx:id="apps" prefHeight="200.0" prefWidth="840.0" style="-fx-background-color: #319997;">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
                </VBox.margin></ListView>
@@ -178,7 +197,7 @@
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
-                  <TextArea prefHeight="63.0" prefWidth="360.0" style="-fx-border-color: #319997; -fx-border-radius: 12;">
+                  <TextArea fx:id="note" prefHeight="63.0" prefWidth="360.0" style="-fx-border-color: #319997; -fx-border-radius: 12;">
                      <HBox.margin>
                         <Insets left="40.0" top="10.0" />
                      </HBox.margin>

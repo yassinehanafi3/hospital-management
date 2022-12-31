@@ -1,11 +1,13 @@
 package presentation.controllers.doctordashboard.mediator;
 
+import presentation.controllers.doctordashboard.DoctorDashboardController;
 import presentation.controllers.doctordashboard.menus.*;
 
 public class DoctorDashboardMediator {
     private AppointmentsController appointments;
     private PationController pation;
     private PationsController pations;
+    private DoctorDashboardController doctorDashboard;
 
 
 
@@ -27,7 +29,15 @@ public class DoctorDashboardMediator {
         return DoctorDashboardMediator.DoctorDashboardMediatorHolder.INSTANCE;
     }
 
+    public void setDoctorDashboard(DoctorDashboardController doctorDashboard) {
+        this.doctorDashboard = doctorDashboard;
+    }
+
     private static class DoctorDashboardMediatorHolder {
         private static final DoctorDashboardMediator INSTANCE = new DoctorDashboardMediator();
+    }
+
+    public DoctorDashboardController getDoctorDashboard() {
+        return doctorDashboard;
     }
 }

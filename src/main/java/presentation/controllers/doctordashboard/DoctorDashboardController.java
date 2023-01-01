@@ -31,18 +31,21 @@ public class DoctorDashboardController implements Initializable {
         DoctorDashboardMediator.getInstance().setPations(pationsController);
         DoctorDashboardMediator.getInstance().setTabPane(tabPane);
     }
-    @FXML protected void loadDashboard() {
-        this.tabPane.getSelectionModel().select(0);
-    }
 
     @FXML protected void loadAppointmentsMenu() {
         System.out.println("Clicked appointments menu");
-        this.tabPane.getSelectionModel().select(1);
+        this.tabPane.getSelectionModel().select(0);
     }
     @FXML protected void loadPationsMenu() {
         System.out.println("Clicked pations menu");
-        this.tabPane.getSelectionModel().select(2);
+        this.tabPane.getSelectionModel().select(1);
     }
+
+    @FXML protected void loadAccountMenu() {
+        System.out.println("Clicked account menu");
+        this.tabPane.getSelectionModel().select(3);
+    }
+
     public static DoctorDashboardController getInstance() {
         return DoctorDashboardController.DoctorDashboardControllerHolder.INSTANCE;
     }
@@ -53,5 +56,6 @@ public class DoctorDashboardController implements Initializable {
     public void setTabPane(TabPane tabPane) {
         this.tabPane = tabPane;
     }
+
 
 }

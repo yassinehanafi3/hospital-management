@@ -12,6 +12,8 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -90,10 +92,8 @@ public class DoctorDAO {
         return this.mongoCollection.updateOne(filter, NewVal).wasAcknowledged();
     }
 
-    public boolean updateDoctor(String filterKey, String filterValue, String updateKey, String updateValue) {
-        BasicDBObject filter = new BasicDBObject(filterKey, filterValue);
-        BasicDBObject NewVal = new BasicDBObject(updateKey, updateValue);
-        return this.mongoCollection.updateOne(filter, NewVal).wasAcknowledged();
+    public boolean updateDoctor(String filterField, String filterValue, String updateField, String updateValue ) {
+        return this.mongoCollection.updateOne(new Document(filterField, filterValue), Updates.set(updateField,updateValue)).wasAcknowledged();
     }
 
     public boolean update(Doctor doctor) {

@@ -11,5 +11,7 @@ public class AdminService {
         return this.adminDAO.findByAnyField(field, Value);
     }
 
-
+    public boolean updateField(String filterField, String filterValue, String updateField, String updateValue) {
+        return this.adminDAO.updateField(filterField, filterValue, updateField, updateValue);
+    }
 }

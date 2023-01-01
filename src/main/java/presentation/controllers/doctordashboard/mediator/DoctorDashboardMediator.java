@@ -30,7 +30,7 @@ public class DoctorDashboardMediator {
 
     public void loadPation() {
         setSelectedPation();
-        this.tabPane.getSelectionModel().select(3);
+        this.tabPane.getSelectionModel().select(2);
     }
 
     public void setSelectedPation() {

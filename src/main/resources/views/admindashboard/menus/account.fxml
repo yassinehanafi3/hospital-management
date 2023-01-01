@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,7 +11,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane maxHeight="768.0" maxWidth="880.0" minHeight="768.0" minWidth="880.0" prefHeight="768.0" prefWidth="880.0" style="-fx-background-color: #d3d3d3" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.admindashboard.menus.AccountController">
    <children>
@@ -57,7 +57,7 @@
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </Label>
-            <Label text="EE942057" GridPane.columnIndex="1">
+            <Label fx:id="cni" text="EE942057" GridPane.columnIndex="1">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -65,7 +65,7 @@
                   <Font name="Calibri" size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="18.0" prefWidth="90.0" text="EL HANAFI" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="fName" prefHeight="18.0" prefWidth="90.0" text="EL HANAFI" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -73,7 +73,7 @@
                   <Font name="Calibri" size="16.0" />
                </font>
             </Label>
-            <Label text="Yassine" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="lName" text="Yassine" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -110,7 +110,7 @@
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </Label>
-            <Label text="yassinehanafi3" GridPane.columnIndex="1">
+            <Label fx:id="uName" text="yassinehanafi3" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -118,7 +118,7 @@
                   <Font name="Calibri" size="16.0" />
                </font>
             </Label>
-            <Label text="0708161260" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="phone" text="0708161260" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -134,7 +134,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="16/12/2001" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="dateNaissance" text="16/12/2001" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Calibri" size="16.0" />
                </font>
@@ -170,10 +170,10 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <TextField prefHeight="30.0" prefWidth="220.0" GridPane.columnIndex="1" />
+            <TextField fx:id="newUserName" prefHeight="30.0" prefWidth="220.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="627.0" layoutY="564.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="97.0" text="Enregistrer" />
+      <Button layoutX="627.0" layoutY="564.0" mnemonicParsing="false" onAction="#onChangeUsername" prefHeight="36.0" prefWidth="97.0" text="Enregistrer" />
       <Separator layoutX="64.0" layoutY="505.0" prefHeight="0.0" prefWidth="750.0" style="-fx-background-color: #319999;" />
       <Label layoutX="50.0" layoutY="262.0" text="Changer le mot de passe :" textFill="#319999">
          <font>
@@ -185,8 +185,8 @@
       </Label>
       <GridPane layoutX="132.0" layoutY="305.0" prefHeight="135.0" prefWidth="457.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="195.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="343.0" minWidth="10.0" prefWidth="136.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="253.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="343.0" minWidth="10.0" prefWidth="204.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
@@ -218,32 +218,33 @@
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </Label>
-            <TextField maxHeight="30.0" maxWidth="220.0" minHeight="30.0" minWidth="220.0" prefHeight="30.0" prefWidth="220.0" GridPane.columnIndex="1">
+            <PasswordField fx:id="currentPassword" maxHeight="30.0" maxWidth="220.0" minHeight="30.0" minWidth="220.0" prefHeight="30.0" prefWidth="220.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
                <padding>
                   <Insets bottom="5.0" top="5.0" />
                </padding>
-            </TextField>
-            <TextField maxHeight="30.0" maxWidth="220.0" minHeight="30.0" minWidth="220.0" prefHeight="30.0" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            </PasswordField>
+            <PasswordField fx:id="newPassword" maxHeight="30.0" maxWidth="220.0" minHeight="30.0" minWidth="220.0" prefHeight="30.0" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
                <padding>
                   <Insets bottom="5.0" top="5.0" />
                </padding>
-            </TextField>
-            <TextField maxHeight="30.0" maxWidth="220.0" minHeight="30.0" minWidth="220.0" prefHeight="30.0" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            </PasswordField>
+            <PasswordField fx:id="repeatNewPassword" maxHeight="30.0" maxWidth="220.0" minHeight="30.0" minWidth="220.0" prefHeight="30.0" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
                <padding>
                   <Insets bottom="5.0" top="5.0" />
                </padding>
-            </TextField>
+            </PasswordField>
          </children>
       </GridPane>
-      <Button layoutX="489.0" layoutY="449.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="97.0" text="Enregistrer" />
+      <Button layoutX="489.0" layoutY="463.0" mnemonicParsing="false" onAction="#onChangePassword" prefHeight="36.0" prefWidth="97.0" text="Enregistrer" />
+      <Label fx:id="errorLabel" layoutX="142.0" layoutY="440.0" prefHeight="17.0" prefWidth="474.0" textFill="RED" />
    </children>
 </AnchorPane>

@@ -2,8 +2,11 @@ package entities;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.util.Date;
+
+import static entities.Password.GetHash;
 
 public class User implements Serializable {
 
@@ -15,20 +18,22 @@ public class User implements Serializable {
     private String userName;
     private String userPassword;
     private String phone;
+    private String email;
     private Date birthDate = new Date(DateFormat.MEDIUM);
     private String userRole;
 
     public User() {}
 
-    public User(String firstName, String lastName, String cni, String userName, String userPassword, String phone, Date birthDate, String userRole) {
+    public User(String firstName, String lastName, String cni, String userName, String userPassword, String phone, Date birthDate, String userRole, String email) throws NoSuchAlgorithmException {
         this.firstName = firstName;
         this.lastName = lastName;
         this.cni = cni;
         this.userName = userName;
-        this.userPassword = userPassword;
+        this.userPassword =GetHash(userPassword);
         this.phone = phone;
         this.birthDate = birthDate;
         this.userRole = userRole;
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -76,7 +81,11 @@ public class User implements Serializable {
     }
 
     public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+        try {
+            this.userPassword = GetHash(userPassword);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getPhone() {
@@ -96,15 +105,24 @@ public class User implements Serializable {
     }
 
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                " firstName='" + firstName + '\'' +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", cni='" + cni + '\'' +
                 ", userName='" + userName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
                 ", birthDate=" + birthDate +
                 ", userRole='" + userRole + '\'' +
                 '}';

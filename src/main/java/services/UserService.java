@@ -21,6 +21,16 @@ public class UserService {
         };
     }
 
+
+    public boolean updateField(String filterField, String filterValue, String updateField, String updateValue, String userRole) {
+        return switch (userRole) {
+            case "Doctor" -> this.doctorDAO.updateDoctor(filterField, filterValue, updateField, updateValue);
+            case "Pation" -> this.pationDAO.updatePation(filterField, filterValue, updateField, updateValue);
+            case "Admin" -> this.adminDAO.updateField(filterField, filterValue, updateField, updateValue);
+            default -> false;
+        };
+    }
+
     /*public User findByCni(long cni) {
 
     }

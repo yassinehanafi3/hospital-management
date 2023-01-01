@@ -3,6 +3,7 @@ package dao;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mongodb.client.MongoCursor;
+import com.mongodb.client.model.Updates;
 import config.ConnectionMongoDB;
 import entities.Pation;
 import com.mongodb.BasicDBObject;
@@ -10,6 +11,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,7 +51,7 @@ public class PationDAO {
         return gson.fromJson(gson.toJson(this.mongoCollection.find(new Document(field, value)).first()), Pation.class);
     }
 
-    private Document CreatePation(Pation pation) {
+    private Document CreatePation(Pation pation) throws NoSuchAlgorithmException {
         Document doc = new Document();
         doc.append("cni", pation.getCni());
         doc.append("firstName", pation.getFirstName());
@@ -64,7 +66,11 @@ public class PationDAO {
     }
 
     public boolean addPation(Pation pation) {
-        this.mongoCollection.insertOne(this.CreatePation(pation));
+        try {
+            this.mongoCollection.insertOne(this.CreatePation(pation));
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
         return true;
     }
 
@@ -72,10 +78,9 @@ public class PationDAO {
         return this.mongoCollection.updateOne(filter, NewVal).wasAcknowledged();
     }
 
-    public boolean updatePation(String filterKey, String filterValue, String updateKey, String updateValue) {
-        BasicDBObject filter = new BasicDBObject(filterKey, filterValue);
-        BasicDBObject NewVal = new BasicDBObject(updateKey, updateValue);
-        return this.mongoCollection.updateOne(filter, NewVal).wasAcknowledged();
+    public boolean updatePation(String filterField, String filterValue, String updateField, String updateValue ) {
+        //BasicDBObject filter = new BasicDBObject(filterField, filterValue);
+        return this.mongoCollection.updateOne(new Document(filterField, filterValue), Updates.set(updateField,updateValue)).wasAcknowledged();
     }
 
     public boolean deleteByCni(String cni) {

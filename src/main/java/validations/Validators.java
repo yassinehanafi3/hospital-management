@@ -1,6 +1,9 @@
 package validations;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+
+import static entities.Password.GetHash;
 
 public class Validators {
 
@@ -76,6 +79,13 @@ public class Validators {
             isValid = false;
         }
         return isValid;
+    }
+
+
+    public static boolean isPasswordsMatch(String rawPassword,String hashedPassword) throws NoSuchAlgorithmException {
+        System.out.println(hashedPassword);
+        System.out.println(GetHash(rawPassword));
+        return hashedPassword.equals(GetHash(rawPassword));
     }
 
 

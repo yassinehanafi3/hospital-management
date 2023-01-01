@@ -5,6 +5,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TabPane;
+import javafx.stage.Stage;
+import presentation.controllers.ScenesController;
 import presentation.controllers.admindashboard.menus.DashboardController;
 import presentation.controllers.admindashboard.menus.DoctorController;
 import presentation.controllers.admindashboard.mediator.AdminDashboardMediator;
@@ -38,14 +40,9 @@ public class AdminDashboardController implements Initializable {
         AdminDashboardMediator.getInstance().updateDataOnDoctor();
         this.tabPane.getSelectionModel().select(1);
     }
-    @FXML protected void loadPationsMenu() {
+    @FXML protected void loadAccountMenu() {
         //AdminDashboardMediator.getInstance().updateDataOnPation();
         this.tabPane.getSelectionModel().select(2);
-    }
-
-    @FXML protected void loadAppointmentsMenu() {
-        //AdminDashboardMediator.getInstance().updateDataOnAppointment();
-        this.tabPane.getSelectionModel().select(3);
     }
 
     @FXML protected void disconnect() {
@@ -53,7 +50,7 @@ public class AdminDashboardController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             this.redisService.removeUser();
-            System.exit(0);
+            new ScenesController().loadLoginScene((Stage) this.tabPane.getScene().getWindow());
         }
     }
 

@@ -35,11 +35,12 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("Current user :" + CURRENT_USER);
         if (CURRENT_USER == null) {
             signAsButton.setVisible(false);
             orLabel.setVisible(false);
         } else {
-            signAsButton.setText("Sign in as " + CURRENT_USER.getFirstName() + " " + CURRENT_USER.getLastName());
+            signAsButton.setText("Sign in as " + CURRENT_USER.getClass().getSimpleName() + " : " + CURRENT_USER.getFirstName() + " " + CURRENT_USER.getLastName() );
         }
         authController = new AuthController();
         userRoleOptions.add("Admin");
@@ -89,6 +90,7 @@ public class LoginController implements Initializable {
                 try {
                     System.out.println("Good Job Landed on Doctor");
                     new ScenesController().loadDoctorDashboard(currentStage);
+                    //new ScenesController().loadAdminDashboard(currentStage);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

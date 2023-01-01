@@ -11,7 +11,7 @@ import static presentation.shared.GlobalVariables.*;
 public class MyScene extends Scene {
 
     public MyScene(Parent parent) {
-        super(parent, FRAME_WIDTH, FRAME_HEIGHT);
+        super(parent, LOGIN_FRAME_WIDTH, LOGIN_FRAME_HEIGHT);
     }
 
     public MyScene(Parent parent, double v, double v1) {

@@ -1,7 +1,5 @@
 package entities;
 
-import org.bson.types.ObjectId;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.text.DateFormat;

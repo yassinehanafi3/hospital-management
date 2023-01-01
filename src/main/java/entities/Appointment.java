@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Appointment implements Serializable {
@@ -64,12 +65,8 @@ public class Appointment implements Serializable {
 
     @Override
     public String toString() {
-        return "Appointment{" +
-                "appointmentId=" + appointmentId +
-                ", appointmentDoctorCni='" + appointmentDoctorCni + '\'' +
-                ", appointmentPationCni='" + appointmentPationCni + '\'' +
-                ", appointmentNote='" + appointmentNote + '\'' +
-                ", appointmentDate=" + appointmentDate +
-                '}';
+        return "Date : " + appointmentDate +  "\t\t\t" +
+                "Doctor : " + appointmentDoctorCni + "\t\t\t" +
+                "Note : " + appointmentNote;
     }
 }

@@ -2,6 +2,7 @@ package presentation.controllers.doctordashboard.menus;
 
 import entities.AhmedAppointments;
 import entities.Appointment;
+import entities.Doctor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import services.PationService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import static presentation.shared.GlobalVariables.*;
 
 public class AppointmentsController implements Initializable {
     @FXML
@@ -49,8 +51,7 @@ public class AppointmentsController implements Initializable {
     public void loadAppointments(){
         appointments.clear();
         PationService service = new PationService();
-        for (Appointment appointment:appointmentService.getAllAppointments()
-             ) {
+        for (Appointment appointment:appointmentService.getAllAppointmentsByDoctor(CURRENT_USER)) {
             AhmedAppointments ahmed = new AhmedAppointments(appointment.getAppointmentDate(),service.getPationByCni(appointment.getAppointmentPationCni()),appointment);
             appointments.add(ahmed);
         }

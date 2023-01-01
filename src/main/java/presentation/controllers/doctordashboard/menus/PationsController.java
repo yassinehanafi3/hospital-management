@@ -1,7 +1,6 @@
 package presentation.controllers.doctordashboard.menus;
 
-import entities.AhmedAppointments;
-import entities.Appointment;
+import entities.Doctor;
 import entities.Pation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import presentation.controllers.doctordashboard.DoctorDashboardController;
 import presentation.controllers.doctordashboard.mediator.DoctorDashboardMediator;
 import services.PationService;
 
@@ -17,6 +15,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static presentation.shared.GlobalVariables.CURRENT_USER;
 
 public class PationsController implements Initializable {
     @FXML
@@ -55,7 +55,7 @@ public class PationsController implements Initializable {
     }
     public void loadPations(){
         pations.clear();
-        pations.addAll(pationService.getAllPations());
+        pations.addAll(pationService.getAllPationsByDoctor(CURRENT_USER));
     }
     public void addPation(){
         String firstName = prenom.getText();
@@ -108,15 +108,24 @@ public class PationsController implements Initializable {
         phone.setText("");
         cni.setText("");
     }
-    public void selectedPation(){
+    public Pation getSelectedPation(){
         if(patioInstance == null){
             Alert alert = new Alert(Alert.AlertType.WARNING,"Veuillez sélectionner un patient", ButtonType.OK);
             alert.show();
+            return null;
         }else {
             this.patioInstance = tPations.getSelectionModel().getSelectedItem();
-
         }
+        return patioInstance;
     }
+
+
+    @FXML protected void onLoadPation() {
+        getSelectedPation();
+        DoctorDashboardMediator.getInstance().loadPation();
+    }
+
+
     public static PationsController getInstance() {
         return PationsController.PationsControllerHolder.INSTANCE;
     }

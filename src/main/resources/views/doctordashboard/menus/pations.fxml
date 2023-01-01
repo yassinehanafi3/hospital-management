@@ -157,7 +157,7 @@
                   <Insets bottom="10.0" left="20.0" right="20.0" />
                </VBox.margin>
             </TableView>
-            <Button onAction="#selectedPation" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #319997;" text="Voir le patient sélectionné" textFill="WHITE">
+            <Button onAction="#onLoadPation" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #319997;" text="Voir le patient sélectionné" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -1,14 +1,15 @@
 package presentation.controllers.doctordashboard.mediator;
 
-import presentation.controllers.doctordashboard.DoctorDashboardController;
+import entities.Pation;
+import javafx.scene.control.TabPane;
 import presentation.controllers.doctordashboard.menus.*;
 
 public class DoctorDashboardMediator {
     private AppointmentsController appointments;
     private PationController pation;
     private PationsController pations;
-    private DoctorDashboardController doctorDashboard;
 
+    private TabPane tabPane;
 
 
     public void setAppointments(AppointmentsController appointments) {
@@ -23,21 +24,32 @@ public class DoctorDashboardMediator {
         this.pations = pations;
     }
 
-    public DoctorDashboardMediator() {
-    }
-    public static DoctorDashboardMediator getInstance() {
-        return DoctorDashboardMediator.DoctorDashboardMediatorHolder.INSTANCE;
+    public void setTabPane(TabPane tabPane) {
+        this.tabPane = tabPane;
     }
 
-    public void setDoctorDashboard(DoctorDashboardController doctorDashboard) {
-        this.doctorDashboard = doctorDashboard;
+    public void loadPation() {
+        setSelectedPation();
+        this.tabPane.getSelectionModel().select(3);
+    }
+
+    public void setSelectedPation() {
+        this.pation.setPation(this.getSelectedPation());
+    }
+
+    public Pation getSelectedPation() {
+        return this.pations.getSelectedPation();
+    }
+
+    public DoctorDashboardMediator() {}
+
+
+    public static DoctorDashboardMediator getInstance() {
+        return DoctorDashboardMediator.DoctorDashboardMediatorHolder.INSTANCE;
     }
 
     private static class DoctorDashboardMediatorHolder {
         private static final DoctorDashboardMediator INSTANCE = new DoctorDashboardMediator();
     }
 
-    public DoctorDashboardController getDoctorDashboard() {
-        return doctorDashboard;
-    }
 }

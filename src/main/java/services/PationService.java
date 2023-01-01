@@ -1,10 +1,13 @@
 package services;
 
 import dao.PationDAO;
+import entities.Appointment;
 import entities.Doctor;
 import entities.Pation;
 import com.mongodb.BasicDBObject;
+import entities.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static presentation.shared.GlobalVariables.CURRENT_USER;
@@ -12,6 +15,7 @@ import static presentation.shared.GlobalVariables.CURRENT_USER;
 public class PationService {
 
     private PationDAO pationDao;
+    private AppointmentService appointmentService = new AppointmentService();
 
     public PationService() {
         this.pationDao = new PationDAO();
@@ -23,6 +27,17 @@ public class PationService {
         }*/
         return this.pationDao.findAll();
     }
+
+
+    public List<Pation> getAllPationsByDoctor(User doctor) {
+        List<Pation> pations = new ArrayList<>();
+        for (Appointment appointment : this.appointmentService.getAllAppointmentsByDoctor(doctor)) {
+            Pation pation = this.getPationByCni(appointment.getAppointmentPationCni());
+            if (!pations.contains(pation)) pations.add(pation);
+        }
+        return pations;
+    }
+
 
     /*public boolean pationValidation(Pation pat, String password) throws ParseException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

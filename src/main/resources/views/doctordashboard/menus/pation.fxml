@@ -202,7 +202,7 @@
                         <Insets left="40.0" top="10.0" />
                      </HBox.margin>
                   </TextArea>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="109.0" style="-fx-background-color: #319997;" text="Add note" textAlignment="CENTER" textFill="WHITE">
+                  <Button onAction="#addNote" mnemonicParsing="false" prefHeight="40.0" prefWidth="109.0" style="-fx-background-color: #319997;" text="Add note" textAlignment="CENTER" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>

@@ -2,6 +2,8 @@ package presentation.services;
 
 import config.ConnectRedis;
 import entities.User;
+import presentation.shared.GlobalVariables;
+import services.AdminService;
 import services.DoctorService;
 import services.PationService;
 import com.lambdaworks.redis.RedisConnection;
@@ -11,10 +13,12 @@ public class RedisService {
     private RedisConnection<String, String> connection = ConnectRedis.getConnection();
     private DoctorService doctorService;
     private PationService pationService;
+    private AdminService adminService;
 
     public RedisService() {
         doctorService = new DoctorService();
         pationService = new PationService();
+        adminService = new AdminService();
     }
 
 
@@ -36,6 +40,7 @@ public class RedisService {
             switch (role) {
                 case "Doctor" -> user = doctorService.getDoctorByCni(cni);
                 case "Pation" -> user = pationService.getPationByCni(cni);
+                case "Admin" -> user = adminService.getAdminByField("cni", cni);
             }
             return user;
         } catch (Exception e) {
@@ -47,6 +52,7 @@ public class RedisService {
 
     public void removeUser() {
         connection.del("gestionhopital:currentUser-cni", "gestionhopital:currentUser-username", "gestionhopital:currentUser-role");
+        GlobalVariables.removeCurrentUser();
     }
 
 }

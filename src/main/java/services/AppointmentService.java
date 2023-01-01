@@ -4,6 +4,8 @@ import dao.AppointmentDAO;
 import entities.Appointment;
 import com.mongodb.BasicDBObject;
 import entities.Doctor;
+import entities.Pation;
+import entities.User;
 
 import java.util.Date;
 import java.util.List;
@@ -25,8 +27,12 @@ public class AppointmentService {
         return null;
     }
 
-    public List<Appointment> getAllAppointmentsByDoctor(Doctor doctor) {
+    public List<Appointment> getAllAppointmentsByDoctor(User doctor) {
         return this.appointmentDAO.findAllByDoctor(doctor);
+    }
+
+    public List<Appointment> getAllAppointmentsByDoctorAndPation(User doctor, Pation pation) {
+        return this.appointmentDAO.findAllByDoctorAndPation(doctor, pation);
     }
 
     public Appointment findByDate(Date rdvDate) {
@@ -53,5 +59,12 @@ public class AppointmentService {
 
     public boolean updateRDV(BasicDBObject filter, BasicDBObject NewVal) {
         return this.appointmentDAO.updateAppointment(filter, NewVal);
+    }
+
+    public boolean updateRDV(String filterKey, String filterValue, String newValKey, String newValue) {
+        return this.appointmentDAO.updateAppointment(filterKey, filterValue, newValKey, newValue);
+    }
+    public boolean updateRDVById(long id, String newValKey, String newValue) {
+        return this.appointmentDAO.updateAppointment(id, newValKey, newValue);
     }
 }

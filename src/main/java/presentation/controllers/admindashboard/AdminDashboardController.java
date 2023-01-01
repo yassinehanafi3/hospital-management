@@ -40,14 +40,9 @@ public class AdminDashboardController implements Initializable {
         AdminDashboardMediator.getInstance().updateDataOnDoctor();
         this.tabPane.getSelectionModel().select(1);
     }
-    @FXML protected void loadPationsMenu() {
+    @FXML protected void loadAccountMenu() {
         //AdminDashboardMediator.getInstance().updateDataOnPation();
         this.tabPane.getSelectionModel().select(2);
-    }
-
-    @FXML protected void loadAppointmentsMenu() {
-        //AdminDashboardMediator.getInstance().updateDataOnAppointment();
-        this.tabPane.getSelectionModel().select(3);
     }
 
     @FXML protected void disconnect() {

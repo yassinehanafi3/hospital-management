@@ -1,5 +1,7 @@
 package presentation.controllers.doctordashboard.mediator;
 
+import entities.Pation;
+import javafx.scene.control.TabPane;
 import presentation.controllers.doctordashboard.menus.*;
 
 public class DoctorDashboardMediator {
@@ -7,6 +9,7 @@ public class DoctorDashboardMediator {
     private PationController pation;
     private PationsController pations;
 
+    private TabPane tabPane;
 
 
     public void setAppointments(AppointmentsController appointments) {
@@ -21,8 +24,26 @@ public class DoctorDashboardMediator {
         this.pations = pations;
     }
 
-    public DoctorDashboardMediator() {
+    public void setTabPane(TabPane tabPane) {
+        this.tabPane = tabPane;
     }
+
+    public void loadPation() {
+        setSelectedPation();
+        this.tabPane.getSelectionModel().select(3);
+    }
+
+    public void setSelectedPation() {
+        this.pation.setPation(this.getSelectedPation());
+    }
+
+    public Pation getSelectedPation() {
+        return this.pations.getSelectedPation();
+    }
+
+    public DoctorDashboardMediator() {}
+
+
     public static DoctorDashboardMediator getInstance() {
         return DoctorDashboardMediator.DoctorDashboardMediatorHolder.INSTANCE;
     }
@@ -30,4 +51,5 @@ public class DoctorDashboardMediator {
     private static class DoctorDashboardMediatorHolder {
         private static final DoctorDashboardMediator INSTANCE = new DoctorDashboardMediator();
     }
+
 }

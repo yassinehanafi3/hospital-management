@@ -59,6 +59,7 @@ public class PationDAO {
         doc.append("userName", pation.getUserName());
         doc.append("userPassword", pation.getUserPassword());
         doc.append("phone", pation.getPhone());
+        doc.append("email", pation.getEmail());
         return doc;
     }
 

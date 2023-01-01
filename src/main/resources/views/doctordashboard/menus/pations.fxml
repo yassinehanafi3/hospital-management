@@ -7,6 +7,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="768.0" maxWidth="880.0" minHeight="768.0" minWidth="880.0" prefHeight="768.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.DoctorDashboard.menus.Pations">
+<AnchorPane maxHeight="768.0" maxWidth="880.0" minHeight="768.0" minWidth="880.0" prefHeight="768.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.doctordashboard.menus.PationsController">
    <children>
       <VBox layoutX="79.0" layoutY="7.0" prefHeight="700.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -29,29 +31,30 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField style="-fx-border-color: #319997;" GridPane.columnIndex="1">
+                  <TextField fx:id="nom" style="-fx-border-color: #319997;" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField style="-fx-border-color: #319997;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="prenom" style="-fx-border-color: #319997;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField style="-fx-border-color: #319997;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="phone" style="-fx-border-color: #319997;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField style="-fx-border-color: #319997;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="email" style="-fx-border-color: #319997;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Label text="First name :">
+                  <Label text="Prenom :">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
@@ -59,7 +62,7 @@
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label text="Last name :" GridPane.rowIndex="1">
+                  <Label text="Nom :" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
@@ -67,7 +70,7 @@
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
-                  <Label text="Phone :" GridPane.rowIndex="2">
+                  <Label text="Téléphone :" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
@@ -83,6 +86,19 @@
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
+                  <Label text="Cni :" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="cni" style="-fx-border-color: #319997;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
                </children>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -90,7 +106,7 @@
             </GridPane>
             <HBox alignment="CENTER" prefHeight="81.0" prefWidth="880.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #319997;" text="Add pation" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#addPation" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #319997;" text="Ajouter" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -101,7 +117,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #319997;" text="Delete" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#deletePation" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #319997;" text="Supprimer" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -112,12 +128,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <TextField prefHeight="40.0" prefWidth="149.0" style="-fx-border-color: #319997;">
+                  <TextField fx:id="search" prefHeight="40.0" prefWidth="149.0" style="-fx-border-color: #319997;">
                      <HBox.margin>
                         <Insets left="190.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #319997;" text="Search" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#searchPations" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #319997;" text="Chercher" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -130,17 +146,35 @@
                   </Button>
                </children>
             </HBox>
-            <TableView prefHeight="488.0" prefWidth="840.0" style="-fx-border-color: #319997;">
+            <TableView  fx:id="tPations" prefHeight="462.0" prefWidth="840.0" style="-fx-border-color: #319997;">
               <columns>
-                <TableColumn prefWidth="210.0" text="First name" />
-                <TableColumn prefWidth="210.0" text="Last name" />
-                  <TableColumn prefWidth="210.0" text="Phone" />
-                  <TableColumn prefWidth="210.0" text="Email" />
+                <TableColumn fx:id="cNom" prefWidth="210.0" text="Prenom" />
+                <TableColumn fx:id="cPrenom" prefWidth="210.0" text="Nom" />
+                  <TableColumn fx:id="cPhone" prefWidth="210.0" text="Téléphone" />
+                  <TableColumn fx:id="cEmail" prefWidth="210.0" text="Email" />
               </columns>
                <VBox.margin>
                   <Insets bottom="10.0" left="20.0" right="20.0" />
                </VBox.margin>
             </TableView>
+            <Button onAction="#onLoadPation" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #319997;" text="Voir le patient sélectionné" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/eyeIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="530.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </children>

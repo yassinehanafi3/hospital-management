@@ -4,11 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
+import com.mongodb.client.model.Updates;
 import config.ConnectionMongoDB;
 import entities.Appointment;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import entities.Doctor;
+import entities.Pation;
+import entities.User;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -36,7 +39,6 @@ public class AppointmentDAO {
         try (MongoCursor<Document> cursor = iterable.iterator()) {
             while (cursor.hasNext()) {
                 Appointment appointment = gson.fromJson(gson.toJson(cursor.next()), Appointment.class);
-                System.out.println(appointment);
                 appointmentList.add(appointment);
             }
         }
@@ -51,7 +53,6 @@ public class AppointmentDAO {
         try (MongoCursor<Document> cursor = iterable.iterator()) {
             while (cursor.hasNext()) {
                 Appointment appointment = gson.fromJson(gson.toJson(cursor.next()), Appointment.class);
-                System.out.println(appointment);
                 appointmentList.add(appointment);
             }
         }
@@ -59,13 +60,26 @@ public class AppointmentDAO {
     }
 
 
-    public List<Appointment> findAllByDoctor(Doctor doctor) {
+    public List<Appointment> findAllByDoctor(User doctor) {
         List<Appointment> appointmentList = new ArrayList<>();
         FindIterable iterable = this.mongoCollection.find(new Document("appointmentDoctorCni", doctor.getCni()));
         try (MongoCursor<Document> cursor = iterable.iterator()) {
             while (cursor.hasNext()) {
                 Appointment appointment = gson.fromJson(gson.toJson(cursor.next()), Appointment.class);
-                System.out.println(appointment);
+                appointmentList.add(appointment);
+            }
+        }
+        return appointmentList;
+    }
+
+
+    public List<Appointment> findAllByDoctorAndPation(User doctor, Pation pation) {
+        List<Appointment> appointmentList = new ArrayList<>();
+        Bson andComparison = and(new Document("appointmentDoctorCni", doctor.getCni()),new Document("appointmentPationCni", new Document("$eq", pation.getCni())));
+        FindIterable iterable = this.mongoCollection.find(andComparison);
+        try (MongoCursor<Document> cursor = iterable.iterator()) {
+            while (cursor.hasNext()) {
+                Appointment appointment = gson.fromJson(gson.toJson(cursor.next()), Appointment.class);
                 appointmentList.add(appointment);
             }
         }
@@ -119,10 +133,14 @@ public class AppointmentDAO {
     }
 
     public boolean updateAppointment(String filterKey, String filterValue, String updateKey, String updateValue) {
-        BasicDBObject filter = new BasicDBObject(filterKey, filterValue);
-        BasicDBObject NewVal = new BasicDBObject(updateKey, updateValue);
-        return this.mongoCollection.updateOne(filter, NewVal).wasAcknowledged();
+        System.out.println(filterKey + filterValue + updateKey + updateValue);
+        return this.mongoCollection.updateOne(new Document(filterKey, filterValue), Updates.set(updateKey, updateValue)).wasAcknowledged();
     }
+
+    public boolean updateAppointment(long id, String newValKey, String newValue) {
+        return this.mongoCollection.updateOne(new Document("appointmentId", id), Updates.set(newValKey, newValue)).wasAcknowledged();
+    }
+
 
     public boolean deleteAppointmentById(long id) {
         return this.mongoCollection.deleteOne(new Document("appointmentId", id)).wasAcknowledged();

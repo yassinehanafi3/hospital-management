@@ -27,4 +27,3 @@ public class GlobalVariables {
 
     public static void removeCurrentUser() {CURRENT_USER = null;}
 }
-
